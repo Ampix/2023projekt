@@ -96,7 +96,6 @@ function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
 	let output:number = 0
 	for (let index = 0; index < hónap; index++) {
 		output += hónapHosszuság[index]
-		
 	}
 	output += nap
 	return output

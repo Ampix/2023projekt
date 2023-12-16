@@ -13,7 +13,7 @@
 
 <main class="text-white text-center bg-slate-600">
   <h1 class="text-3xl m-3">A 2023-as projekthét legjobb projektje</h1>
-  <div class="bg-blue-600 mx-56 p-5 my-5 rounded-3xl">
+  <div class="bg-blue-600 md:mx-56 mx-2 p-5 my-5 rounded-3xl">
     <h2 class="text-2xl mb-2">Szökőév számoló</h2>
     <h3>Szökőév: {#if szokoev.back?.az}
       {szokoev.back.az}
@@ -29,7 +29,7 @@
       <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg w-28 text-lg p-1">Számolás</button>
     </form>
   </div>
-  <div class="bg-blue-600 mx-56 p-5 my-5 rounded-3xl">
+  <div class="bg-blue-600 md:mx-56 mx-2 p-5 my-5 rounded-3xl">
     <h2 class="text-2xl mb-2">Húsvét vasárnap számoló</h2>
     <h3>{#if hvasarbap.back?.ev}{hvasarbap.back.ev}{/if}-ban/ben {#if hvasarbap.back?.hónap}{hvasarbap.back.hónap}{/if} {#if hvasarbap.back?.nap}{hvasarbap.back.nap}{/if}. napján lesz húsvét vasárnap</h3>
     <form on:submit|preventDefault={calcHvasar}>
