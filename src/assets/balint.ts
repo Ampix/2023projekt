@@ -20,7 +20,7 @@ export function Szökőév(év: number) {
 		}
 	}
 	let count = 0
-	for (let index = 0; index < év; index++) {
+	for (let index = 0; index < Math.abs(év); index++) {
 		if (index % 4 == 0) {
 			count++
 		}
@@ -29,10 +29,8 @@ export function Szökőév(év: number) {
 	return output
 }
 function HónapSzámToSzöveg(HónapSzám:number){
-	
 	let hónapok = ['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december']
-
-	return hónapok[HónapSzám]
+	return hónapok[HónapSzám-1]
 }
 /**
  * Kiszámítja hogy az adott évben mikorra esik húsvét vasárnapja
@@ -56,7 +54,7 @@ export function HusvétVasárnap(év: number){
 	let nap = ((h + l - 7 * m + 114) % 31) + 1
 	let output:{hónap?:String,nap?:Number,ev?:Number} = {}
 	
-	hónap = HónapSzámToSzöveg(hónap-1)
+	hónap = HónapSzámToSzöveg(hónap)
 	output.hónap = hónap
 	output.nap = nap
 	output.ev = év
@@ -73,23 +71,33 @@ function MilyenNap(év:number,hónap:number,dátum:number){
 		hónap += 12;
 		év -= 1;
 	  }
-	console.log(dátum)
-	console.log(hónap)
 	const J:number = Math.floor(év/100)
-	console.log(J)
 	const K:number =(év%100)
-	console.log(K)
+
 	let h:number|string = (dátum + Math.floor((13 * (hónap + 1)) / 5) + K + Math.floor(K / 4) + Math.floor(J / 4) - 2 * J) % 7;
 	let nap = ((h+5)%7)+1
 	return nap
 }
 export function PéntekTizenHárom(év: number){
 	let output = []
-	for (let index = 1; index <= 12; index++) {
+	for (let index = 1; index < 13; index++) {
 		if (MilyenNap(év,index,13) == 5){
-			output.push(NapSzámToSzöveg(index))
+			output.push(HónapSzámToSzöveg(index))
 		}
 	}
 	return output
 }
-console.log(PéntekTizenHárom(2023))
+
+function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
+	const hónapHosszuság = [31,28,31,30,31,30,31,31,30,31,30,31]	
+	if (Szökőév(év).az == 'igen'){
+		hónapHosszuság[1] = 29
+	}
+	let output:number = 0
+	for (let index = 0; index < hónap; index++) {
+		output += hónapHosszuság[index]
+		
+	}
+	output += nap
+	return output
+}
