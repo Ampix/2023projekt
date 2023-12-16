@@ -88,15 +88,16 @@ export function PéntekTizenHárom(év: number){
 	return output
 }
 
-function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
+export function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
 	const hónapHosszuság = [31,28,31,30,31,30,31,31,30,31,30,31]	
 	if (Szökőév(év).az == 'igen'){
 		hónapHosszuság[1] = 29
 	}
 	let output:number = 0
-	for (let index = 0; index < hónap; index++) {
+	for (let index = 0; index < hónap-1; index++) {
 		output += hónapHosszuság[index]
 	}
 	output += nap
 	return output
 }
+
