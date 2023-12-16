@@ -101,3 +101,10 @@ export function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
 	return output
 }
 
+export function SzületésnapEsélyek(emberek:number):number{
+	let output = 1
+	for (let index = 1; index < emberek+1; index++) {
+		output *= (365-index)/365
+	}
+    return Math.floor((1-output)*100)
+}

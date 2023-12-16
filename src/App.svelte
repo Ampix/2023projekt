@@ -1,10 +1,11 @@
 <script lang="ts">
-  import {ÉvHanyadikNapja,PéntekTizenHárom,Szökőév,HusvétVasárnap} from './assets/balint'
+  import {SzületésnapEsélyek,ÉvHanyadikNapja,PéntekTizenHárom,Szökőév,HusvétVasárnap} from './assets/balint'
 
   let szokoev: {selected?: number, back?: {az?: 'igen' | 'nem'; eddig?: number; next?: number }} = {}
   let hvasarbap: {selected?: number, back?:{hónap?:String,nap?:Number,ev?:Number}} = {}
   let p13: {selected?:number, back?: string[], backYear?:number} = {}
   let évnap: {év?:number,hónap?:number,nap?:number,back?:string,backYear?:number} = {}
+  let szülszal: {emberek?:number,back?:number} = {}
 
   const calcSzokoev = () => {
     szokoev.back = Szökőév(Number(szokoev.selected!))
@@ -15,6 +16,9 @@
   const calcP13 = () => {
     p13.back = PéntekTizenHárom(Number(p13.selected!))
     p13.backYear = p13.selected
+  }
+  const calcszülszal = () => {
+    szülszal.back = SzületésnapEsélyek(Number(szülszal.emberek!))
   }
   const calcévnap = () => {
     if(évnap.hónap > 12 || évnap.hónap < 1 || évnap.nap > 31 || évnap.nap < 1){
@@ -62,7 +66,7 @@
   </div>
   <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
     <h2 class="text-2xl mb-2">Év hányadik napja</h2>
-    <h3>{#if évnap.backYear}{évnap.backYear}{/if} {#if évnap.back}{évnap.back}{/if} napja lesz</h3>
+    <h3>{#if évnap.backYear}{évnap.backYear}{/if} {#if évnap.back}{évnap.back}{/if} napja</h3>
     <form on:submit|preventDefault={calcévnap}>
       <input type="number" required placeholder="év" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={évnap.év}>
       <input type="number" required placeholder="hónap" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={évnap.hónap}>
@@ -70,4 +74,16 @@
       <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
     </form>
   </div>
+  <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
+    <h2 class="text-2xl mb-2">Születési számoló</h2>
+    <h3>{#if szülszal.back !==undefined}{szülszal.back}{/if}% annak az esélye, hogy ketten egy napon születtek</h3>
+    <form on:submit|preventDefault={calcszülszal}>
+      <input type="number" required placeholder="emberek" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={szülszal.emberek}>
+      <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
+    </form>
+  </div>
 </main>
+
+<div class="text-white absolute right-5 bottom-3">
+  <h1 class="text-xl sticky">Ampix 2021-2023</h1>
+</div>
