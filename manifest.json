@@ -3,12 +3,17 @@
     "name": "2023 Legjobb projektje",
     "icons": [
       {
-        "src": "/public/icon.png",
+        "src": "/favicon.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "/icon.png",
         "type": "image/png",
         "sizes": "512x512"
       },
       {
-        "src": "/public/iconbig.png",
+        "src": "/iconbig.png",
         "type": "image/png",
         "sizes": "1024x1024"
       }
