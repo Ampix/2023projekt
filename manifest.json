@@ -1,0 +1,18 @@
+{
+    "short_name": "Ampix Projekt",
+    "name": "2023 Legjobb projektje",
+    "icons": [
+      {
+        "src": "/public/favicon.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#475569",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#475569",
+    "description": "2023 Legjobb Projektje"
+  }
