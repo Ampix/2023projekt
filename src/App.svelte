@@ -116,6 +116,6 @@
   </div>
 </main>
 
-<div class="text-white fixed bottom-2 right-4">
+<div class="text-white md:fixed md:bottom-2 md:right-4 text-center mb-3 md:mb-0">
   <h1 class="text-xl sticky">Ampix 2021-2023</h1>
 </div>
