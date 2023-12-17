@@ -82,38 +82,6 @@
       <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
     </form>
   </div>
-  <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
-    <h2 class="text-2xl mb-2">Születési számoló</h2>
-    <h3>{#if szülszal.back !==undefined}{szülszal.back}{/if}% annak az esélye, hogy ketten egy napon születtek</h3>
-    <form on:submit|preventDefault={calcszülszal}>
-      <input type="number" required placeholder="emberek" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={szülszal.emberek}>
-      <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
-    </form>
-  </div>
-  <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
-    <h2 class="text-2xl mb-2">Születési számoló</h2>
-    <h3>{#if szülszal.back !==undefined}{szülszal.back}{/if}% annak az esélye, hogy ketten egy napon születtek</h3>
-    <form on:submit|preventDefault={calcszülszal}>
-      <input type="number" required placeholder="emberek" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={szülszal.emberek}>
-      <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
-    </form>
-  </div>
-  <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
-    <h2 class="text-2xl mb-2">Születési számoló</h2>
-    <h3>{#if szülszal.back !==undefined}{szülszal.back}{/if}% annak az esélye, hogy ketten egy napon születtek</h3>
-    <form on:submit|preventDefault={calcszülszal}>
-      <input type="number" required placeholder="emberek" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={szülszal.emberek}>
-      <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
-    </form>
-  </div>
-  <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
-    <h2 class="text-2xl mb-2">Születési számoló</h2>
-    <h3>{#if szülszal.back !==undefined}{szülszal.back}{/if}% annak az esélye, hogy ketten egy napon születtek</h3>
-    <form on:submit|preventDefault={calcszülszal}>
-      <input type="number" required placeholder="emberek" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={szülszal.emberek}>
-      <button type="submit" class="bg-blue-500 duration-200 mt-2 hover:bg-blue-700 rounded-lg text-lg w-28 p-1">Számolás</button>
-    </form>
-  </div>
 </main>
 
 <div class="text-white md:fixed md:bottom-2 md:right-4 text-center mb-3 md:mb-0">
