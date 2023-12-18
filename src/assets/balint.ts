@@ -5,7 +5,7 @@
  */
 export function Szökőév(év: number) {
 	let output: { az: 'igen' | 'nem'; eddig?: number; next?: number } = { az: 'nem' }
-	if (!(év % 4)) {
+	if ((!(év % 4) && ((év%100)!=0)) || !(év%400)) {
 		output.az = 'igen'
 		output.next = év + 4
 	} else {
@@ -61,9 +61,12 @@ export function HusvétVasárnap(év: number){
 	return output
 }
 function NapSzámToSzöveg(napSzám:number){
-
 	let napok = ['hétfő','kedd','szerda','csütörtök','péntek','szombat','vasárnap']
 	return napok[napSzám]
+}
+
+export function öröknaptár(év:number,hónap:number,dátum:number){
+	return NapSzámToSzöveg(MilyenNap(év,hónap,dátum))
 }
 
 function MilyenNap(év:number,hónap:number,dátum:number){
@@ -80,8 +83,9 @@ function MilyenNap(év:number,hónap:number,dátum:number){
 }
 export function PéntekTizenHárom(év: number){
 	let output = []
-	for (let index = 1; index < 13; index++) {
+	for (let index = 1,count = 0; index <= 12, count<3; index++) {
 		if (MilyenNap(év,index,13) == 5){
+			count++
 			output.push(HónapSzámToSzöveg(index))
 		}
 	}
