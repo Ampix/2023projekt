@@ -77,7 +77,7 @@ import {leszVagyVoltVagyVan,ÉvSzámDátummá} from './assets/csano'
     for (let i = 0; i < hónapHosszuság.length; i++) {
       évnapjai += hónapHosszuság[i]
     }
-    if(évszám.szám <= évnapjai){
+    if((évszám.szám <= évnapjai) && (évszám.szám>0)){
       évszám.back = ÉvSzámDátummá(évszám.év,évszám.szám)
       évszám.back.év = évszám.év
     }
