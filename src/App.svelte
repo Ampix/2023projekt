@@ -8,7 +8,7 @@ import {leszVagyVoltVagyVan,ÉvSzámDátummá} from './assets/csano'
   let évnap: {év?:number,hónap?:number,nap?:number,back?:string,backYear?:number} = {}
   let szülszal: {emberek?:number,back?:number} = {}
   let örökpapi: {év?:number,hónap?:number,nap?:number,backNap?:string,backYear?:number,backHónap?:string,megnevezo?:"van"|"volt"|"lesz",backNapszám?:number} = {}
-  let évszám: {év?:number,szám?:number,back?:{év?:number,nap?:number,hónap?:number}} = {}
+  let évszám: {év?:number,szám?:number,back?:{év?:number,nap?:number,hónap?:number|string}} = {}
 
   const calcSzokoev = () => {
     if(szokoev.selected > 1581){
@@ -80,6 +80,7 @@ import {leszVagyVoltVagyVan,ÉvSzámDátummá} from './assets/csano'
     if((évszám.szám <= évnapjai) && (évszám.szám>0)){
       évszám.back = ÉvSzámDátummá(évszám.év,évszám.szám)
       évszám.back.év = évszám.év
+      évszám.back.hónap = HónapSzámToSzöveg(Number(évszám.back.hónap))
     }
   }
 </script>
@@ -151,7 +152,7 @@ import {leszVagyVoltVagyVan,ÉvSzámDátummá} from './assets/csano'
   </div>
   <div class="bg-blue-600 md:mx-56 xl:mx-96 mx-2 p-5 my-5 rounded-3xl">
     <h2 class="text-2xl mb-2">Év hányadik napja milyen dátum</h2>
-    <h3>{#if évszám.back?.év !==undefined}{évszám.back.év+"."}{/if} {#if évszám.back?.hónap !==undefined}{évszám.back.hónap+"."}{/if} {#if évszám.back?.nap !==undefined}{évszám.back.nap+"."}{/if}</h3>
+    <h3>{#if évszám.back?.év !==undefined}{évszám.back.év+"."}{/if} {#if évszám.back?.hónap !==undefined}{évszám.back.hónap}{/if} {#if évszám.back?.nap !==undefined}{évszám.back.nap+"."}{/if}</h3>
     <form on:submit|preventDefault={calcÉvszám}>
       <input type="number" required placeholder="év" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={évszám.év}>
       <input type="number" required placeholder="szám" class="text-white duration-200 focus:bg-blue-700 text-lg placeholder:text-white text-center w-28 rounded-lg p-1 bg-blue-500" bind:value={évszám.szám}>

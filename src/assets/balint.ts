@@ -32,8 +32,11 @@ export function Szökőév(év: number) {
 			output.next = év + 3
 		}
 	}}
+	if(év == 1582){
+		output.next = 1584
+	}
 	let count = 0
-	for (let index = 1581; index < Math.abs(év); index++) {
+	for (let index = 1582; index < Math.abs(év); index++) {
 		if ((!(index % 4) && (((index%100)!=0)) || (!(index%400)))) {
 			count++
 		}
