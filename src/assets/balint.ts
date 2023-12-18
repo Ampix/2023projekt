@@ -5,30 +5,43 @@
  */
 export function Szökőév(év: number) {
 	let output: { az: 'igen' | 'nem'; eddig?: number; next?: number } = { az: 'nem' }
-	if ((!(év % 4) && ((év%100)!=0)) || !(év%400)) {
-		output.az = 'igen'
-		output.next = év + 4
+	if (év > 1582){
+	if (!(év % 4)) {
+		if(((év%100)!=0) || !(év%400)){
+			output.az = 'igen'
+			if(((év+4)%100)!=0){
+				output.next = év + 4
+			}else{
+				output.next = év + 8
+			}
+		}else{
+			if(((év+4)%100)!=0){
+				output.next = év + 4
+			}else{
+				output.next = év + 8
+			}
+		}
 	} else {
-		if ((év + 1) % 4 == 0) {
+		if (((év + 1) % 4 == 0)&&((év+1)% 100 !=0)|| (!((év+1)%400))) {
 			output.next = év + 1
 		}
-		if ((év + 2) % 4 == 0) {
+		if (((év + 2) % 4 == 0)&&((év+2)% 100 !=0)|| (!((év+2)%400))) {
 			output.next = év + 2
 		}
-		if ((év + 3) % 4 == 0) {
+		if (((év + 3) % 4 == 0)&&((év+3)% 100 !=0)|| (!((év+3)%400))) {
 			output.next = év + 3
 		}
-	}
+	}}
 	let count = 0
-	for (let index = 0; index < Math.abs(év); index++) {
-		if (index % 4 == 0) {
+	for (let index = 1581; index < Math.abs(év); index++) {
+		if ((!(index % 4) && (((index%100)!=0)) || (!(index%400)))) {
 			count++
 		}
 	}
-	output.eddig = count - 1
+	output.eddig = count
 	return output
 }
-function HónapSzámToSzöveg(HónapSzám:number){
+export function HónapSzámToSzöveg(HónapSzám:number){
 	let hónapok = ['január','február','március','április','május','június','július','augusztus','szeptember','október','november','december']
 	return hónapok[HónapSzám-1]
 }
@@ -52,21 +65,20 @@ export function HusvétVasárnap(év: number){
     var m = Math.floor((a + 11 * h + 22 * l) / 451);
 	let hónap:string|number = Math.floor((h + l - 7 * m + 114) / 31)
 	let nap = ((h + l - 7 * m + 114) % 31) + 1
-	let output:{hónap?:String,nap?:Number,ev?:Number} = {}
+	let output:{hónap?:number,nap?:number,ev?:number} = {}
 	
-	hónap = HónapSzámToSzöveg(hónap)
 	output.hónap = hónap
 	output.nap = nap
 	output.ev = év
 	return output
 }
-function NapSzámToSzöveg(napSzám:number){
+export function NapSzámToSzöveg(napSzám:number){
 	let napok = ['hétfő','kedd','szerda','csütörtök','péntek','szombat','vasárnap']
 	return napok[napSzám]
 }
 
 export function öröknaptár(év:number,hónap:number,dátum:number){
-	return NapSzámToSzöveg(MilyenNap(év,hónap,dátum))
+	return NapSzámToSzöveg(MilyenNap(év,hónap,dátum)-1)
 }
 
 function MilyenNap(év:number,hónap:number,dátum:number){
@@ -83,10 +95,13 @@ function MilyenNap(év:number,hónap:number,dátum:number){
 }
 export function PéntekTizenHárom(év: number){
 	let output = []
-	for (let index = 1,count = 0; index <= 12, count<3; index++) {
-		if (MilyenNap(év,index,13) == 5){
-			count++
-			output.push(HónapSzámToSzöveg(index))
+	for (let index = 1;index < 13; index++) {
+		if(output.length>3){
+			index = 13
+		}else{
+			if (MilyenNap(év,index,13) == 5){
+				output.push(HónapSzámToSzöveg(index))
+			}
 		}
 	}
 	return output
@@ -107,7 +122,7 @@ export function ÉvHanyadikNapja(év:number,hónap:number,nap:number) {
 
 export function SzületésnapEsélyek(emberek:number):number{
 	let output = 1
-	for (let index = 1; index < emberek+1; index++) {
+	for (let index = 1; index < emberek; index++) {
 		output *= (365-index)/365
 	}
     return Math.floor((1-output)*100)
